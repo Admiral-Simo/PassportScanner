@@ -5,34 +5,60 @@ import "passportScanner/views/layouts"
 templ Main() {
 	@layouts.Base() {
 		@UploadPassport()
+		<div id="upload-container"></div>
 	}
 }
 
 templ UploadPassport() {
 	<div class="min-h-screen bg-pink-500 flex items-center justify-center">
-		<div
-			class="rounded-md container bg-pink-400 border border-4 border-dashed border-white flex flex-col items-center justify-center py-20 cursor-pointer"
-			id="upload-container"
-			hx-post="/get-upload-history"
-			hx-trigger="change from:file-upload"
+		<form
+			x-data="{ dragging: false }"
+			class="rounded-md container bg-pink-400 border border-4 border-dashed border-white flex flex-col items-center justify-center py-20 cursor-pointer transition-opacity duration-300"
+			hx-post="/get-document-data"
+			hx-trigger="change"
 			hx-include="#file-upload"
 			hx-target="#upload-container"
 			hx-swap="innerHTML"
+			@click="$refs.fileInput.click()"
+			@dragover.prevent="dragging = true"
+			@dragleave="dragging = false"
+			@drop.prevent="dragging = false; handleDrop($event)"
+			:class="{ 'opacity-80': dragging }"
+			hx-encoding="multipart/form-data"
 		>
 			<img
 				class="w-52 mb-4"
 				src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/512/folder-icon.png"
 			/>
 			<h1 class="text-3xl">
-				<strong class="text-bold underline decoration-pink-500 decoration-4">Click Here</strong> To Scan Your
+				<strong class="text-bold underline decoration-blue-500 decoration-4">Click Here</strong> To Scan Your
 				<strong class="text-bold text-yellow-300">Passport.</strong>
 			</h1>
-			<input type="file" id="file-upload" name="file" class="hidden" accept=".jpeg,.jpg,.png,.tiff"/>
-		</div>
+			<input
+				type="file"
+				x-ref="fileInput"
+				id="file-upload"
+				name="file"
+				class="hidden"
+				accept=".jpeg,.jpg,.png,.tiff"
+			/>
+		</form>
 		<script>
-        document.getElementById('upload-container').addEventListener('click', function () {
-            document.getElementById('file-upload').click();
+        function handleDrop(event) {
+            const fileInput = document.getElementById('file-upload');
+            fileInput.files = event.dataTransfer.files;
+            fileInput.dispatchEvent(new Event('change'));
+        }
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('uploadComponent', () => ({
+                dragging: false
+            }));
         });
     </script>
 	</div>
+}
+
+templ Response(name string) {
+	<div class="bg-black text-white">{ name }</div>
 }
