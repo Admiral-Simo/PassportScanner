@@ -4,42 +4,42 @@ import "passportScanner/views/layouts"
 import "passportScanner/scannersdk"
 
 templ DocumentData(document *scannersdk.DocumentData) {
-	@layouts.Base() {
-		<div class="bg-purple-500 min-h-screen flex items-center justify-center p-4">
-			<div class="bg-white shadow-lg rounded-lg max-w-lg w-full p-6 text-purple-800">
+	@layouts.Base(document.LastName) {
+		<div class="bg-green-500 min-h-screen flex items-center justify-center p-4">
+			<div class="bg-white shadow-lg rounded-lg max-w-lg w-full p-6 text-green-800">
 				<h1 class="text-2xl font-semibold mb-4">Document Details</h1>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Document Type</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.DocumentType }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Document Type</p>
+						<p class="text-lg text-green-600 font-thin">{ document.DocumentType }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Document Number</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.DocumentNumber }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Document Number</p>
+						<p class="text-lg text-green-600 font-thin">{ document.DocumentNumber }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">First Name</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.FirstName }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">First Name</p>
+						<p class="text-lg text-green-600 font-thin">{ document.FirstName }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Last Name</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.LastName }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Last Name</p>
+						<p class="text-lg text-green-600 font-thin">{ document.LastName }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Sex</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.Sex }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Sex</p>
+						<p class="text-lg text-green-600 font-thin">{ document.Sex }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Birth Date</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.BirthDate }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Birth Date</p>
+						<p class="text-lg text-green-600 font-thin">{ document.BirthDate }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Expire Date</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.ExpireDate }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Expire Date</p>
+						<p class="text-lg text-green-600 font-thin">{ document.ExpireDate }</p>
 					</div>
 					<div>
-						<p class="text-xl p-2 rounded-sm bg-purple-300 text-black">Country Code</p>
-						<p class="text-lg text-purple-600 font-thin">{ document.CountryCode }</p>
+						<p class="text-xl p-2 rounded-sm bg-green-300 text-black">Country Code</p>
+						<p class="text-lg text-green-600 font-thin">{ document.CountryCode }</p>
 					</div>
 				</div>
 			</div>

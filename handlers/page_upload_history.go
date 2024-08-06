@@ -14,7 +14,9 @@ func UploadHistoryPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 		// convert from map[string][]string to []struct{date: string, images: []string}
 
 		if err != nil {
-			c.String(http.StatusInternalServerError, "Something went wrong", err)
+			c.Status(http.StatusInternalServerError)
+			pages.ErrorPage().Render(c, c.Writer)
+			return
 		}
 
 		pages.UploadHistory(history).Render(c, c.Writer)

@@ -1,8 +1,9 @@
 package layouts
 
-templ Base() {
+templ Base(title string) {
 	<html>
 		<head>
+			<title>{ title }</title>
 			<link rel="preconnect" href="https://fonts.googleapis.com"/>
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 			<link
@@ -26,10 +27,10 @@ templ Base() {
 }
 
 templ NavBar() {
-	<nav class="bg-purple-900 text-white py-5">
+	<nav class="bg-green-900 text-white py-5">
 		<div class="container mx-auto flex items-center justify-between px-4">
-			<a href="/" class="text-2xl font-bold">GM <span class="text-amber-500">SOFT</span></a>
-			<a href="/upload-history" class="py-3 px-5 font-bold bg-purple-500">Upload History</a>
+			<a hx-get="/" hx-target="body" class="text-2xl font-bold cursor-pointer">GM <span class="text-amber-500">SOFT</span></a>
+			<a hx-get="/upload-history" hx-target="body" class="py-3 px-5 font-bold bg-green-500 cursor-pointer">Upload History</a>
 		</div>
 	</nav>
 }
