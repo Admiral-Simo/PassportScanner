@@ -3,26 +3,28 @@ package pages
 import "passportScanner/views/layouts"
 
 templ UploadHistory(history map[string][]string) {
-@layouts.Base("Upload history") {
-<div class="bg-green-500 w-full">
-    <div class="container mx-auto">
-        <div class="p-4">
-            <h2 class="text-white text-2xl font-bold mb-4">Upload History</h2>
-            <div class="space-y-4">
-                for key, passports := range history {
-                <div class="bg-white p-4 rounded-md shadow-sm">
-                    <h3 class="text-lg font-semibold text-green-700">{ key }</h3>
-                    <div class="flex flex-wrap gap-4 mt-2">
-                        for _, p := range passports {
-                        <img src={ templ.JoinStringErrs("http://" + p) }
-                            class="w-32 h-32 object-cover rounded-md border border-green-300" />
-                        }
-                    </div>
-                </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-}
+	@layouts.Base("Upload history") {
+		<div class="bg-amber-500 w-full">
+			<div class="container mx-auto">
+				<div class="p-4">
+					<h2 class="text-white text-2xl font-bold mb-4">Upload History</h2>
+					<div class="space-y-4">
+						for key, passports := range history {
+							<div class="bg-white p-4 rounded-md shadow-sm">
+								<h3 class="text-lg font-semibold text-amber-700">{ key }</h3>
+								<div class="flex flex-wrap gap-4 mt-2">
+									for _, p := range passports {
+										<img
+											src={ templ.JoinStringErrs("http://" + p) }
+											class="w-32 h-32 object-cover rounded-md border border-amber-300"
+										/>
+									}
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	}
 }
