@@ -10,46 +10,54 @@ templ Main() {
 }
 
 templ UploadPassport() {
-
-<div class="min-h-screen bg-pink-500 flex items-center justify-center">
-	<form
-		x-data="{ dragging: false }"
-		class="relative rounded-md container bg-pink-400 border border-4 border-dashed border-white flex flex-col items-center justify-center py-20 cursor-pointer transition-opacity duration-300"
-		hx-post="/get-document-data"
-		hx-trigger="change"
-		hx-include="#file-upload"
-		hx-target="body"
-		hx-swap="innerHTML"
-		@click="$refs.fileInput.click()"
-		@dragover.prevent="dragging = true"
-		@dragleave="dragging = false"
-		@drop.prevent="dragging = false; handleDrop($event)"
-		:class="{ 'opacity-80': dragging }"
-		hx-encoding="multipart/form-data"
-	>
-		<img
-			class="w-52 mb-4"
-			src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/512/folder-icon.png"
-		/>
-		<h1 class="text-3xl">
-			<strong class="text-bold underline decoration-blue-500 decoration-4">Click Here</strong> To Scan Your
-			<strong class="text-bold text-yellow-300">Passport.</strong>
-		</h1>
-		<input
-			type="file"
-			x-ref="fileInput"
-			id="file-upload"
-			name="file"
-			class="hidden"
-			accept=".jpeg,.jpg,.png,.tiff"
-		/>
-
-		<!-- Loading Indicator -->
-		<div id="loading-indicator" class="absolute inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 text-white text-xl rounded-md hidden">
-			Loading...
-		</div>
-	</form>
-	<script>
+	<div class="min-h-screen bg-pink-500 flex items-center justify-center">
+		<form
+			x-data="{ dragging: false }"
+			class="relative rounded-md container bg-pink-400 border border-4 border-dashed border-white flex flex-col items-center justify-center py-20 cursor-pointer transition-opacity duration-300"
+			hx-post="/get-document-data"
+			hx-trigger="change"
+			hx-include="#file-upload"
+			hx-target="body"
+			hx-swap="innerHTML"
+			@click="$refs.fileInput.click()"
+			@dragover.prevent="dragging = true"
+			@dragleave="dragging = false"
+			@drop.prevent="dragging = false; handleDrop($event)"
+			:class="{ 'opacity-80': dragging }"
+			hx-encoding="multipart/form-data"
+		>
+			<img
+				class="w-52 mb-4"
+				src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/512/folder-icon.png"
+			/>
+			<h1 class="text-3xl">
+				<strong class="text-bold underline decoration-blue-500 decoration-4">Click Here</strong> To Scan Your
+				<strong class="text-bold text-yellow-300">Passport.</strong>
+			</h1>
+			<input
+				type="file"
+				x-ref="fileInput"
+				id="file-upload"
+				name="file"
+				class="hidden"
+				accept=".jpeg,.jpg,.png,.tiff"
+			/>
+			<!-- Loading Indicator -->
+			<div
+				id="loading-indicator"
+				class="absolute inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 text-white text-xl rounded-md hidden"
+			>
+				Loading...
+			</div>
+			<!-- Error Message Area -->
+			<div
+				id="error-message"
+				class="absolute inset-0 flex items-center justify-center bg-red-500 text-white text-xl rounded-md hidden bg-opacity-50"
+			>
+				Error: Unable to parse the passport. Please try again.
+			</div>
+		</form>
+		<script>
         function handleDrop(event) {
             const fileInput = document.getElementById('file-upload');
             fileInput.files = event.dataTransfer.files;
@@ -62,18 +70,25 @@ templ UploadPassport() {
             }));
         });
 
-        document.addEventListener('htmx:beforeSend', function(event) {
+        document.addEventListener('htmx:beforeSend', function (event) {
             if (event.detail.elt.tagName === 'FORM') {
                 document.getElementById('loading-indicator').classList.remove('hidden');
+                document.getElementById('error-message').classList.add('hidden');
             }
         });
 
-        document.addEventListener('htmx:afterSwap', function(event) {
+        document.addEventListener('htmx:afterSwap', function (event) {
             if (event.detail.elt.tagName === 'FORM') {
                 document.getElementById('loading-indicator').classList.add('hidden');
             }
         });
-    </script>
-</div>
 
+        document.addEventListener('htmx:responseError', function (event) {
+            if (event.detail.elt.tagName === 'FORM') {
+                document.getElementById('loading-indicator').classList.add('hidden');
+                document.getElementById('error-message').classList.remove('hidden');
+            }
+        });
+    </script>
+	</div>
 }
