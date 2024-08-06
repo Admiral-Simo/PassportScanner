@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"passportScanner/scannersdk"
 	"passportScanner/views/pages"
 
 	"github.com/gin-gonic/gin"
@@ -9,6 +10,9 @@ import (
 
 func main() {
 	r := gin.Default()
+
+
+    scanner := scannersdk.NewScannerSDK()
 
 	r.GET("/", func(c *gin.Context) {
 		pages.Main().Render(c, c.Writer)
@@ -21,7 +25,14 @@ func main() {
 			return
 		}
 
-		pages.Response(file.Filename).Render(c, c.Writer)
+		document, err := scanner.GetDocumentData(file)
+
+		if err != nil {
+			c.String(http.StatusBadRequest, "%v", err)
+			return
+		}
+
+		pages.Response(document).Render(c, c.Writer)
 	})
 
 	r.Run(":4000")
