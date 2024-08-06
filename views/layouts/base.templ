@@ -1,36 +1,47 @@
 package layouts
 
 templ Base(title string) {
-	<html>
-		<head>
-			<title>{ title }</title>
-			<link rel="preconnect" href="https://fonts.googleapis.com"/>
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-			<link
-				href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-				rel="stylesheet"
-			/>
-			<script src="//unpkg.com/alpinejs" defer></script>
-			<script src="https://cdn.tailwindcss.com"></script>
-			<script src="https://unpkg.com/htmx.org@2.0.1" integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/" crossorigin="anonymous"></script>
-			<style>
+<html>
+
+<head>
+    <title>{ title }</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.1"
+        integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/"
+        crossorigin="anonymous"></script>
+    <style>
         body {
             font-family: Poppins;
         }
     </style>
-		</head>
-		<body class="text-white">
-			@NavBar()
-			{ children... }
-		</body>
-	</html>
+</head>
+
+<body class="text-white">
+    @NavBar()
+    { children... }
+</body>
+
+</html>
 }
 
 templ NavBar() {
-	<nav class="bg-green-900 text-white py-5">
-		<div class="container mx-auto flex items-center justify-between px-4">
-			<a hx-get="/" hx-target="body" class="text-2xl font-bold cursor-pointer">GM <span class="text-amber-500">SOFT</span></a>
-			<a hx-get="/upload-history" hx-target="body" class="py-3 px-5 font-bold bg-green-500 cursor-pointer">Upload History</a>
-		</div>
-	</nav>
+<nav class="bg-green-900 text-white py-5">
+    <div class="container mx-auto flex items-center justify-between px-4">
+
+<a hx-get="/" hx-target="body" class="text-2xl font-bold cursor-pointer transition duration-300 ease-in-out transform hover:text-amber-500 hover:underline hover:rotate-3">
+    GM <span class="text-amber-500">SOFT</span>
+</a>
+
+        <a hx-get="/upload-history" hx-target="body"
+            class="py-3 px-5 font-bold bg-green-500 text-white rounded-md cursor-pointer transition transform duration-300 ease-in-out hover:bg-green-600 hover:shadow-lg hover:scale-95">
+            Upload History
+        </a>
+    </div>
+</nav>
 }
