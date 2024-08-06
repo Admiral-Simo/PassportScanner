@@ -11,8 +11,7 @@ import (
 func main() {
 	r := gin.Default()
 
-
-    scanner := scannersdk.NewScannerSDK()
+	scanner := scannersdk.NewScannerSDK()
 
 	r.GET("/", func(c *gin.Context) {
 		pages.Main().Render(c, c.Writer)
@@ -33,6 +32,16 @@ func main() {
 		}
 
 		pages.Response(document).Render(c, c.Writer)
+	})
+
+	r.GET("/upload-history", func(c *gin.Context) {
+		history, err := scanner.GetUploadHistory()
+
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Something went wrong", err)
+		}
+
+		pages.UploadHistory(history).Render(c, c.Writer)
 	})
 
 	r.Run(":4000")

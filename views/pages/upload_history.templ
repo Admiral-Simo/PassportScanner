@@ -1,0 +1,14 @@
+package pages
+
+import "passportScanner/views/layouts"
+
+templ UploadHistory(history map[string][]string) {
+@layouts.Base() {
+    <div  class="bg-pink-500">
+
+for key := range history {
+<div>{ key }</div>
+}
+    </div>
+}
+}
