@@ -4,8 +4,8 @@ type ScannerSDK struct {
 	endpoint string
 }
 
-func NewScannerSDK() *ScannerSDK {
-	return &ScannerSDK{
+func NewScannerSDK() ScannerSDK {
+	return ScannerSDK{
 		endpoint: "http://31.220.89.29:8091",
 	}
 }

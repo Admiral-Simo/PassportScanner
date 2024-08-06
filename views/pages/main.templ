@@ -1,7 +1,6 @@
 package pages
 
 import "passportScanner/views/layouts"
-import "passportScanner/scannersdk"
 
 templ Main() {
 	@layouts.Base() {
@@ -18,7 +17,7 @@ templ UploadPassport() {
 			hx-post="/get-document-data"
 			hx-trigger="change"
 			hx-include="#file-upload"
-			hx-target="#upload-container"
+			hx-target="body"
 			hx-swap="innerHTML"
 			@click="$refs.fileInput.click()"
 			@dragover.prevent="dragging = true"
@@ -58,17 +57,4 @@ templ UploadPassport() {
         });
     </script>
 	</div>
-}
-
-templ Response(document *scannersdk.DocumentData) {
-	<div class="bg-black text-white">
-    <h1>{ document.DocumentType }</h1>
-    <h1>{ document.DocumentNumber }</h1>
-    <h1>{ document.FirstName }</h1>
-    <h1>{ document.LastName }</h1>
-    <h1>{ document.Sex }</h1>
-    <h1>{ document.BirthDate }</h1>
-    <h1>{ document.ExpireDate }</h1>
-    <h1>{ document.CountryCode }</h1>
-    </div>
 }
