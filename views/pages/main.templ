@@ -5,15 +5,14 @@ import "passportScanner/views/layouts"
 templ Main() {
 	@layouts.Base() {
 		@UploadPassport()
-		<div id="upload-container"></div>
 	}
 }
 
 templ UploadPassport() {
-	<div class="min-h-screen bg-pink-500 flex items-center justify-center">
+	<div class="min-h-screen bg-purple-500 flex items-center justify-center px-4">
 		<form
 			x-data="{ dragging: false }"
-			class="relative rounded-md container bg-pink-400 border border-4 border-dashed border-white flex flex-col items-center justify-center py-20 cursor-pointer transition-opacity duration-300"
+			class="relative rounded-md container bg-purple-400 border border-4 border-dashed border-white flex flex-col items-center justify-center py-20 cursor-pointer transition-opacity duration-300"
 			hx-post="/get-document-data"
 			hx-trigger="change"
 			hx-include="#file-upload"
@@ -45,9 +44,24 @@ templ UploadPassport() {
 			<!-- Loading Indicator -->
 			<div
 				id="loading-indicator"
-				class="absolute inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 text-white text-xl rounded-md hidden"
+				class="absolute inset-0 flex items-center justify-center bg-purple-500 bg-opacity-50 text-white text-xl rounded-md hidden"
 			>
-				Loading...
+				<div class="flex items-center">
+					<svg
+						class="w-12 h-12 text-white animate-spin"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<circle cx="12" cy="12" r="10"></circle>
+						<path d="M22 12a10 10 0 1 0-10 10"></path>
+					</svg>
+					<span class="ml-4 animate-pulse">Loading...</span>
+				</div>
 			</div>
 			<!-- Error Message Area -->
 			<div
