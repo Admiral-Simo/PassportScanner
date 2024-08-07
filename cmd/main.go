@@ -13,6 +13,7 @@ func main() {
 
 	scanner := scannersdk.NewScannerSDK()
 
+	r.Static("/public", "./public")
 	// pages
 	r.GET("/", handlers.MainPageHandler)
 	r.POST("/get-document-data", handlers.DocumentDataPageHandler(scanner))
