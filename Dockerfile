@@ -1,4 +1,4 @@
-FROM golang:1.20 AS builder
+FROM golang:1.22.4 AS builder
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
@@ -29,4 +29,3 @@ EXPOSE 4000
 
 # Command to run the executable
 CMD ["./main"]
-
