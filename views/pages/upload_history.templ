@@ -14,22 +14,22 @@ return strconv.Itoa(total)
 
 templ UploadHistory(history []models.UploadHistory) {
 @layouts.Base("Upload history") {
-<div class="bg-amber-500 w-full">
+<div class="w-full">
     <div class="container mx-auto">
         <div class="p-4">
             <div class="flex items-center justify-between">
-                <h2 class="text-white text-2xl font-bold mb-4">Upload History</h2>
-                <h2 class="text-white text-2xl font-bold mb-4">Total Images: { calculateTotal(history) }</h2>
+                <h2 class="text-2xl font-bold mb-4">Upload History</h2>
+                <h2 class="text-2xl font-bold mb-4">Total Images: { calculateTotal(history) }</h2>
             </div>
             <div class="space-y-4">
                 for _, el := range history {
-                <div class="bg-white p-4 rounded-md shadow-sm" x-data="{ show: false }">
+                <div class="bg-[#1F3226] p-4 rounded-md shadow-sm" x-data="{ show: false }">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold text-amber-700">{ el.Date }</h3>
-                        <h3 class="text-lg font-semibold text-amber-700">Images: { strconv.Itoa(len(el.Images)) }</h3>
+                        <h3 class="text-lg font-semibold text-amber-500">{ el.Date }</h3>
+                        <h3 class="text-lg font-semibold text-amber-500">Images: { strconv.Itoa(len(el.Images)) }</h3>
                     </div>
-                    <button @click="show = !show" class="mt-2 text-sm text-amber-500 hover:text-amber-700"
-                        :class="show ? 'text-gray-500 hover:text-gray-700' : 'text-amber-500 hover:text-amber-700'"
+                    <button @click="show = !show" class="mt-2 text-sm hover:text-amber-700"
+                        :class="show ? 'text-gray-300 hover:text-gray-200' : 'text-white hover:text-white'"
                         x-text="show ? 'Hide Images' : 'Show Images'"></button>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2" x-show="show"
                         x-transition>

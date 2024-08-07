@@ -25,25 +25,40 @@ templ Base(title string) {
     </style>
 </head>
 
-<body class="text-white">
+<body class="text-[#1F3226]">
     @NavBar()
     { children... }
+    @Footer()
 </body>
 
 </html>
 }
 
 templ NavBar() {
-<nav class="bg-white text-gray-200 py-5 shadow-lg border-b border-slate-500">
+
+<header class="bg-white shadow-xl py-3 px-4">
     <div class="container mx-auto flex items-center justify-between px-4">
-        <a hx-get="/" hx-target="body"
-            class="text-black text-2xl font-extrabold cursor-pointer transition duration-300 ease-in-out transform hover:text-amber-500 hover:underline hover:scale-105 hover:rotate-1">
-            GM <span class="text-amber-500">SOFT</span>
+        <a hx-get="/main" hx-target="body" class="text-black text-2xl font-extrabold cursor-pointer transition duration-300 ease-in-out transform hover:text-amber-500 hover:underline hover:scale-105 hover:rotate-1 uppercase">
+            coren<span class="text-amber-500">tos</span>
         </a>
-        <a hx-get="/authenticate" hx-target="body"
-            class="py-3 px-5 font-semibold bg-black text-white rounded-md cursor-pointer transition transform duration-300 ease-in-out hover:bg-yellow-400 hover:text-black hover:shadow-xl hover:scale-105">
+        <a hx-get="/authenticate" hx-target="body" class="py-3 px-5 font-semibold bg-black text-white rounded-md cursor-pointer transition duration-300 ease-in-out hover:bg-amber-500 hover:text-black hover:shadow-xl hover:scale-105">
             Upload History
         </a>
     </div>
-</nav>
+</header>
+
+}
+
+templ Footer() {
+    <footer class="bg-white shadow-xl py-10 px-4">
+    <div class="container mx-auto text-center flex items-center justify-between">
+        <p>© 2024. All rights reserved.</p>
+        <p>
+            Created by
+            <a class="font-bold underline text-black decoration-black" href="https://github.com/admiral-simo">
+                Mohamed Khalis.
+            </a>
+        </p>
+    </div>
+</footer>
 }

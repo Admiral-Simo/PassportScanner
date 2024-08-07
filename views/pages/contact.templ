@@ -1,0 +1,42 @@
+package pages
+
+templ ContactPage(done bool) {
+@presentationSkeleton("Contact Us") {
+<main class="min-h-screen py-32 bg-gray-100">
+    <section
+        class="container mx-auto flex flex-col items-center md:flex-row md:space-x-8 p-8 bg-white shadow-lg rounded-lg">
+        <div class="w-full md:w-1/2 mb-4 md:mb-0">
+            <h1 class="font-bold text-4xl md:text-6xl mb-5 text-gray-800">
+                Get in touch
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-4 md:mb-8">
+                Give us a call, send us an e-mail. We’re always happy to get in touch.
+            </p>
+            <p class="text-lg md:text-xl text-gray-600">E-mail: support@gmsoft.com</p>
+            <p class="text-lg md:text-xl text-gray-600">phone: 0666666666</p>
+        </div>
+        <form class="w-full md:w-1/2 space-y-4">
+            <input
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text" name="email" placeholder="Enter your e-mail address" />
+            <input
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text" name="phone" placeholder="Phone Number" />
+            <input
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text" name="name" placeholder="Name" />
+            <input
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text" name="company_name" placeholder="Company Name" />
+            <textarea
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="message" placeholder="Message" rows="4"></textarea>
+            <button
+                class="w-full bg-blue-500 text-white font-semibold p-3 rounded-md hover:bg-blue-600 transition duration-300">
+                Send Message
+            </button>
+        </form>
+    </section>
+</main>
+}
+}

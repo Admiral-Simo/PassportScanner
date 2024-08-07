@@ -1,0 +1,131 @@
+package pages
+
+templ PresentationPage() {
+@presentationSkeleton("Landing Page") {
+<main class="min-h-screen bg-gray-100 text-black">
+    @section1()
+    @section2()
+</main>
+}
+}
+
+templ section1() {
+<section class="container mx-auto text-center py-20">
+    <h1 class="font-bold text-4xl md:text-6xl text-[#1F3226] mt-20">
+        AI Document
+        <span class="relative inline-block">
+            Auto Scanning
+            <span
+                class="absolute -bottom-0.5 left-0 w-full h-2 bg-amber-500 rounded-md transform translate-y-1/2"></span>
+        </span> That
+        <br />
+        Makes Work More Meaningful
+    </h1>
+    <p class="text-center text-xl mt-7 text-gray-700">
+        Reduce operational costs. Save valuable time. Prevent fraud.
+    </p>
+    <div class="flex items-center justify-center mt-10 space-x-4">
+        <a href="/main"
+            class="bg-amber-500 text-white hover:bg-black transition-all duration-500 px-6 py-3 rounded-md font-semibold">
+            Try The App
+        </a>
+        <a href="/contact"
+            class="bg-white text-amber-500 border border-amber-500 hover:bg-amber-500 hover:text-white transition-all duration-400 px-6 py-3 rounded-md font-semibold">
+            Contact Us
+        </a>
+    </div>
+</section>
+}
+
+type Card struct {
+Title string
+Desc string
+}
+
+var cards = []Card{
+{Title: `Reduce turnaround time by 90%`, Desc: `Drastically reduce turnaround times by processing documents in 5
+seconds, not minutes.`},
+{Title: `Save up to 80% on operational costs`, Desc: `Eliminate data entry work and reduce 80% of your administrative
+costs with automation.`},
+{Title: `Maximize your workforce efficiency`, Desc: `Empower your workforce to achieve more in less time, by automating
+repetitive tasks.`},
+{Title: `Detect fraud and ensure compliance`, Desc: `Safeguard your business against invoice, identity, and expense
+fraud with smart algorithms.`},
+}
+
+templ section2() {
+<section class="container mx-auto py-20">
+    <h1 class="capitalize text-3xl md:text-4xl text-center mb-12">
+        Leave manual document processing behind,
+        <br />
+        become a frontrunner in automation
+    </h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        for _, card := range cards {
+        <div class="shadow-lg p-8 rounded-lg bg-white">
+            <p class="text-2xl font-bold mb-4">{ card.Title }</p>
+            <p class="text-gray-600">{ card.Desc }</p>
+        </div>
+        }
+    </div>
+</section>
+}
+
+templ presentationSkeleton(title string) {
+<html lang="en">
+
+<head>
+    <title>{ title }</title>
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="text-[#1F3226]">
+    <header class="bg-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/"
+                class="text-black text-2xl font-extrabold cursor-pointer transition duration-300 ease-in-out transform hover:text-amber-500 hover:underline hover:scale-105 hover:rotate-1 uppercase">
+                coren<span class="text-amber-500">tos</span>
+            </a>
+            <nav>
+                <ul class="flex space-x-8 text-lg">
+                    <li>
+                        <a href="/main"
+                            class="text-gray-700 transition duration-300 ease-in-out hover:text-amber-500 hover:underline">App</a>
+                    </li>
+                    <li>
+                        <a href="/contact"
+                            class="text-gray-700 transition duration-300 ease-in-out hover:text-amber-500 hover:underline">Contact
+                            Us</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    { children... }
+    <footer class="bg-white shadow-xl py-10 px-4">
+        <div class="container mx-auto text-center flex items-center justify-between">
+            <p>© 2024. All rights reserved.</p>
+            <p>
+                Created by
+                <a class="font-bold underline text-black decoration-black" href="https://github.com/admiral-simo">
+                    Mohamed Khalis.
+                </a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
+}
