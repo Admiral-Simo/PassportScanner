@@ -3,8 +3,11 @@ package handlers
 import (
 	"errors"
 	"net/http"
+	"passportScanner/models"
 	"passportScanner/scannersdk"
 	"passportScanner/views/pages"
+	"sort"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,6 +25,7 @@ func UploadHistoryPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 		}
 		history, err := scanner.GetUploadHistory()
 		// convert from map[string][]string to []struct{date: string, images: []string}
+		sortedHistory := sortHistory(history)
 
 		if err != nil {
 			c.Status(http.StatusInternalServerError)
@@ -29,6 +33,30 @@ func UploadHistoryPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 			return
 		}
 
-		pages.UploadHistory(history).Render(c, c.Writer)
+		pages.UploadHistory(sortedHistory).Render(c, c.Writer)
 	}
+}
+
+func sortHistory(history map[string][]string) []models.UploadHistory {
+	var sortedHistory []models.UploadHistory
+
+	var dates []string
+	for date := range history {
+		dates = append(dates, date)
+	}
+
+	sort.Slice(dates, func(i, j int) bool {
+		date1, _ := time.Parse("2006-01-02", dates[i])
+		date2, _ := time.Parse("2006-01-02", dates[j])
+		return date2.Before(date1)
+	})
+
+	for _, date := range dates {
+		sortedHistory = append(sortedHistory, models.UploadHistory{
+			Date:   date,
+			Images: history[date],
+		})
+	}
+
+	return sortedHistory
 }
