@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"errors"
 	"net/http"
 	"passportScanner/scannersdk"
 	"passportScanner/views/pages"
@@ -8,14 +9,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const user = "simo"
+const pass = "simo"
+
 func UploadHistoryPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		username := c.PostForm("username")
+		password := c.PostForm("password")
+		if username != user || password != pass {
+			pages.LoginPage(errors.New("invalid email or password.")).Render(c, c.Writer)
+			return
+		}
 		history, err := scanner.GetUploadHistory()
 		// convert from map[string][]string to []struct{date: string, images: []string}
 
 		if err != nil {
 			c.Status(http.StatusInternalServerError)
-			pages.ErrorPage().Render(c, c.Writer)
+			pages.ErrorPage("Something went wrong.").Render(c, c.Writer)
 			return
 		}
 

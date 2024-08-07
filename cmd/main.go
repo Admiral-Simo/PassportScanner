@@ -3,6 +3,7 @@ package main
 import (
 	"passportScanner/handlers"
 	"passportScanner/scannersdk"
+	"passportScanner/views/pages"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,10 +13,13 @@ func main() {
 
 	scanner := scannersdk.NewScannerSDK()
 
-    // pages
+	// pages
 	r.GET("/", handlers.MainPageHandler)
 	r.POST("/get-document-data", handlers.DocumentDataPageHandler(scanner))
-	r.GET("/upload-history", handlers.UploadHistoryPageHandler(scanner))
+	r.GET("/authenticate", func(c *gin.Context) {
+		pages.LoginPage(nil).Render(c, c.Writer)
+	})
+	r.POST("/upload-history", handlers.UploadHistoryPageHandler(scanner))
 
 	r.Run(":4000")
 }

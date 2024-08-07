@@ -2,10 +2,10 @@ package pages
 
 import "passportScanner/views/layouts"
 
-templ ErrorPage() {
+templ ErrorPage(msg string) {
 	@layouts.Base("internal error") {
 		<div class="min-h-screen flex items-center justify-center bg-green-500">
-			<h1 class="text-6xl text-red-500 font-semibold">Something Went Wrong. Please Try Again.</h1>
+			<h1 class="text-6xl text-red-500 font-semibold">{msg}</h1>
 		</div>
 	}
 }
