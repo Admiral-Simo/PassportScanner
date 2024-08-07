@@ -1,4 +1,4 @@
-FROM golang:1.23 AS builder
+FROM golang:1.20 AS builder
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
@@ -25,7 +25,7 @@ WORKDIR /root/
 COPY --from=builder /app/main .
 
 # Expose port 8080 to the outside world
-EXPOSE 8080
+EXPOSE 4000
 
 # Command to run the executable
 CMD ["./main"]
