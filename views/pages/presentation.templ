@@ -79,6 +79,9 @@ templ presentationSkeleton(title string) {
     <link rel="icon" href="/public/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script src="https://unpkg.com/htmx.org@2.0.1"
+        integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/"
+        crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -106,8 +109,10 @@ templ presentationSkeleton(title string) {
                     </li>
                     <li>
                         <a href="/contact"
-                            class="text-gray-700 transition duration-300 ease-in-out hover:text-amber-500 hover:underline">Contact
-                            Us</a>
+                            class="text-gray-700 transition duration-300 ease-in-out hover:text-amber-500 hover:underline">
+                            Contact
+                            Us
+                        </a>
                     </li>
                 </ul>
             </nav>

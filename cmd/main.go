@@ -23,6 +23,7 @@ func main() {
 	})
 	r.POST("/upload-history", handlers.UploadHistoryPageHandler(scanner))
 	r.GET("/contact", handlers.ContactPageHandler)
+	r.POST("/contact/message/new", handlers.PostDataContactPageHandler)
 
 	r.Run(":4000")
 }
