@@ -1,9 +1,9 @@
 package main
 
 import (
-	"passportScanner/handlers"
-	"passportScanner/scannersdk"
-	"passportScanner/views/pages"
+	"PassportScanner/handlers"
+	"PassportScanner/scannersdk"
+	"PassportScanner/views/pages"
 
 	"github.com/gin-gonic/gin"
 )

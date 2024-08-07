@@ -1,4 +1,4 @@
-module passportScanner
+module PassportScanner
 
 go 1.22.4
 

@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"passportScanner/views/pages"
+	"PassportScanner/views/pages"
 
 	"github.com/gin-gonic/gin"
 )

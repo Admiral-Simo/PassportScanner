@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"passportScanner/views/pages"
+	"PassportScanner/views/pages"
 	"strings"
 
 	"github.com/gin-gonic/gin"

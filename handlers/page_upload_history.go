@@ -3,9 +3,9 @@ package handlers
 import (
 	"errors"
 	"net/http"
-	"passportScanner/models"
-	"passportScanner/scannersdk"
-	"passportScanner/views/pages"
+	"PassportScanner/models"
+	"PassportScanner/scannersdk"
+	"PassportScanner/views/pages"
 	"sort"
 	"time"
 

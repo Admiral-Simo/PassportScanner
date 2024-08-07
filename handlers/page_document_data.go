@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"PassportScanner/scannersdk"
 	"net/http"
-	"passportScanner/scannersdk"
-	"passportScanner/views/pages"
+	"PassportScanner/views/pages"
 
 	"github.com/gin-gonic/gin"
 )
