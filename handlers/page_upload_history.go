@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const user = "simo"
-const pass = "simo"
+const user = "root"
+const pass = "gmsoft3344"
 
 func UploadHistoryPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 	return func(c *gin.Context) {
