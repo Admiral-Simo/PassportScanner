@@ -12,6 +12,7 @@ func main() {
 	r := gin.Default()
 
 	scanner := scannersdk.NewScannerSDK()
+	contactStore := handlers.NewContactStore()
 
 	r.Static("/public", "./public")
 	// pages
@@ -23,7 +24,7 @@ func main() {
 	})
 	r.POST("/upload-history", handlers.UploadHistoryPageHandler(scanner))
 	r.GET("/contact", handlers.ContactPageHandler)
-	r.POST("/contact/message/new", handlers.PostDataContactPageHandler)
+	r.POST("/contact/message/new", handlers.PostDataContactPageHandler(contactStore))
 
 	r.Run(":4000")
 }
