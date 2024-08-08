@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"PassportScanner/scannersdk"
-	"net/http"
 	"PassportScanner/views/pages"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,13 +16,20 @@ func DocumentDataPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 			return
 		}
 
-		document, err := scanner.GetDocumentData(file)
+		tmpFilePath := "./public/" + file.Filename
+		if err := c.SaveUploadedFile(file, tmpFilePath); err != nil {
+			c.String(http.StatusInternalServerError, "Error saving file: %v\n", err)
+			return
+		}
 
+		document, err := scanner.GetDocumentData(file)
 		if err != nil {
 			c.String(http.StatusBadRequest, "%v", err)
 			return
 		}
 
-		pages.DocumentData(document).Render(c, c.Writer)
+		imageUrl := "/public/" + file.Filename
+
+		pages.DocumentData(document, imageUrl).Render(c, c.Writer)
 	}
 }
