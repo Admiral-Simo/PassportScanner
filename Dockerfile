@@ -1,16 +1,23 @@
-FROM golang:1.22.4 AS builder
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    git \
+    build-essential \
+    ca-certificates \
+    && wget https://golang.org/dl/go1.22.4.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.22.4.linux-amd64.tar.gz \
+    && rm go1.22.4.linux-amd64.tar.gz
+
+ENV PATH=$PATH:/usr/local/go/bin
+ENV GOPATH=/go
 
 WORKDIR /app
 
 COPY . .
 
 RUN go build -o main ./cmd
-
-FROM gcr.io/distroless/base-debian11
-
-WORKDIR /app
-
-COPY --from=builder /app/main /app/
 
 EXPOSE 4000
 
