@@ -13,7 +13,7 @@ import (
 )
 
 const user = "root"
-const pass = "gmsoft3344"
+const pass = "pass"
 
 func UploadHistoryPageHandler(scanner scannersdk.ScannerSDK) gin.HandlerFunc {
 	return func(c *gin.Context) {
