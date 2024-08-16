@@ -1,39 +1,20 @@
 package main
 
 import (
-	"PassportScanner/api/handler"
-	"PassportScanner/scannersdk"
-	"PassportScanner/views/pages"
+	"PassportScanner/api"
 	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"time"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-
-	scanner := scannersdk.NewScannerSDK()
-	contactStore := handler.NewContactStore()
-
-	r.Static("/public", "./public")
-	// pages
-	r.GET("/", handler.PresentationPageHandler)
-	r.GET("/main", handler.MainPageHandler)
-	r.POST("/get-document-data", handler.DocumentDataPageHandler(scanner))
-	r.GET("/authenticate", func(c *gin.Context) {
-		pages.LoginPage(nil).Render(c, c.Writer)
-	})
-	r.POST("/upload-history", handler.UploadHistoryPageHandler(scanner))
-	r.GET("/contact", handler.ContactPageHandler)
-	r.POST("/contact/message/new", handler.PostDataContactPageHandler(contactStore))
+	webAPI := api.New()
 
 	go cleanUpPublicFile()
 
-	r.Run(":4000")
+	webAPI.StartServer()
 }
 
 func cleanUpPublicFile() {

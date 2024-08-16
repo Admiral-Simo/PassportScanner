@@ -1,0 +1,18 @@
+* application requirements
+    - it requires for users to authenticate using their email and password
+    - send an email to their email account for authorization
+    - give them 50 credits at the beginning
+    - each document scanning (to get data from the document) would require 8 credits
+    - they would have to pay 9$ for every 300 credits
+    - once they scan a document the document will be stored in the database in the name of the user
+     so the user can access the document anytime they want (the document would have a created_at time)
+     associated with the data it scanned (
+                         document.DocumentType,
+                         document.DocumentNumber,
+                         document.FirstName,
+                         document.LastName,
+                         document.Sex,
+                         document.BirthDate,
+                         document.ExpireDate,
+                         document.CountryCode,
+                )

@@ -15,7 +15,7 @@ func ContactPageHandler(c *gin.Context) {
 	pages.ContactPage(false).Render(c, c.Writer)
 }
 
-func PostDataContactPageHandler(store contactStore) gin.HandlerFunc {
+func PostDataContactPageHandler(store ContactStore) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Extract form data
 		email := c.PostForm("email")
@@ -40,19 +40,19 @@ func PostDataContactPageHandler(store contactStore) gin.HandlerFunc {
 	}
 }
 
-type contactStore struct {
+type ContactStore struct {
 	File *os.File
 }
 
-func NewContactStore() contactStore {
+func NewContactStore() ContactStore {
 	file, err := os.Create("contact_page_data.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	return contactStore{File: file}
+	return ContactStore{File: file}
 }
 
-func (c contactStore) StoreDataInFile(data string) error {
+func (c ContactStore) StoreDataInFile(data string) error {
 	_, err := c.File.WriteString(data)
 	if err != nil {
 		return err
@@ -61,7 +61,7 @@ func (c contactStore) StoreDataInFile(data string) error {
 	return nil
 }
 
-func (c contactStore) ReadDataFromFile() (string, error) {
+func (c ContactStore) ReadDataFromFile() (string, error) {
 	var data strings.Builder
 	scanner := bufio.NewScanner(c.File)
 	for scanner.Scan() {
